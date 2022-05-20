@@ -95,7 +95,7 @@ def render_page_content(pathname):
             html.H1("404: Page Not Found", className="text-danger"),
             html.Hr(),
             html.P(f"The pathname {pathname} was not recognised..."),
-            html.Label(['If I knew the way I would take you ', html.A('home', href='/')]),
+            html.Label(['If I knew the way I would take you ', dcc.Link('home', href='/')]),
         ]
     )
 
