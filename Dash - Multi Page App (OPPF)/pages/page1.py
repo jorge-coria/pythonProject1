@@ -1,4 +1,4 @@
-from dash import dcc, html, Input, Output, callback
+from dash import dcc, html, Input, Output, State, callback
 
 layout = html.Div([
     html.H2('Page 1'),
@@ -13,8 +13,11 @@ layout = html.Div([
 ])
 
 
-@callback(
-    Output('page-1-display-value', 'children'),
-    Input('page-1-dropdown', 'value'))
-def display_value(value):
-    return f'You have selected {value}'
+# Page 1 callbacks
+@callback(Output('output-state', 'children'),
+              Input('submit-button', 'n_clicks'),
+              State('input-1-state', 'value'),
+              State('input-2-state', 'value'))
+def update_output(n_clicks, input1, input2):
+    return f'The Button has been pressed {n_clicks} times. \
+            Input 1 is {input1} and Input 2 is {input2}'
