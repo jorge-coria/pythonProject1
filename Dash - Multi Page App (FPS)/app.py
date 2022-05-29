@@ -26,7 +26,7 @@ def display_page(pathname):
     else:
         return dbc.Container(
             [
-                html.H1("404: Page Not Found", className="text-danger"),
+                html.H1("404 -- Page Not Found", className="text-danger"),
                 html.Hr(),
                 html.P(f"The pathname {pathname} was not recognised..."),
                 html.Label(['If I knew the way I would take you ', dcc.Link('home', href='/')]),
