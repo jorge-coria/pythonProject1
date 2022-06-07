@@ -12,4 +12,4 @@ print('Match Object 2: ' + mo2.group())
 
 mo3 = batRegex.search('The Adventures of Batman')
 mo3 == None
-print('Match Object 3: ' + mo3.group())
+print('Match Object 3: ' + str(mo3))
