@@ -21,3 +21,12 @@ print('Match Object 3: ' + mo3.group())
 greedyRegex = re.compile(r'<.*>')
 mo4 = greedyRegex.search('<To serve man> for dinner.>')
 print('Match Object 4: ' + mo4.group())
+
+# Pass .DOTALL as a 2nd argument to re.compile() to make (.*) match all chars, including a newline character
+noNewlineRegex = re.compile('.*')
+mo5 = noNewlineRegex.search('Serve the common humanity.\nProtect all humans.\nFollow the law.')
+print('Match object 5: ' + mo5.group())
+
+newlineRegex = re.compile('.*', re.DOTALL)
+mo6 = newlineRegex.search('Serve the common humanity.\nProtect all humans.\nFollow the law.')
+print('Match object 6: ' + mo6.group())
