@@ -7,10 +7,8 @@ res = requests.get('https://google.com/search?q=' + ''.join(pyperclip.paste()))
 print('\'' + str(pyperclip.paste()) + '\'')
 res.raise_for_status()
 
-# TODO: Retrieve top search result links.
 soup = bs4.BeautifulSoup(res.text, features="html.parser")
 
-# TODO: Open a browser tab for each result.
 linkElems = soup.select('a:has(h3)')
 
 numOpen = min(5, len(linkElems))
