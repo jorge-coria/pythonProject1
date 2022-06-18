@@ -23,7 +23,7 @@ while not url.endswith('#'):
         print('Could not find comic image.')
     else:
         comicUrl = 'http:' + comicElem[0].get('src')
-    # TODO: Download the image.
+    # Download the image.
         print('Downloading image %s...' % (comicUrl))
         print('- - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
         res = requests.get(comicUrl)
