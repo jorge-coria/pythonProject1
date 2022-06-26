@@ -7,7 +7,7 @@ import pprint
 location = pyperclip.paste()
 
 # Download the JSON data from OpenWeatherMap.org's API
-url ='http://api.openweathermap.org/data/2.5/forecast/?q=%s&cnt=3&appid=efe4fe037aa09ad3436c8768df7718a7' % (location)
+url ='http://api.openweathermap.org/data/2.5/forecast/?q=%s&cnt=3&appid={YOUR_APIKEY}' % (location)
 response = requests.get(url)
 response.raise_for_status()
 
