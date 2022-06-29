@@ -88,8 +88,8 @@ def save_data(rows):
     as necessary and/or appends new ones.
     """
 
-    column_names = ['mountain', 'date', 'elevation', 'time', 'wind', 'summary', 'rain', 'snow', 'max_temperature',
-                    'min_temperature', 'chill', 'freezing_level', 'sunrise', 'sunset']
+    column_names = ['mountain', 'date', 'elevation', 'time', 'summary', 'rain', 'snow', 'max_temperature',
+                    'min_temperature', 'chill', 'freezing_level', 'sunrise', 'sunset']  # wind
 
     today = datetime.date.today()
     dataset_name = os.path.join(os.getcwd(), '{:02d}{}_mountain_forecasts.csv'.format(today.month,
@@ -131,8 +131,8 @@ def scrape(mountains_urls):
 
             # Get rows from body
             times = forecast_table.find('tr', attrs={'data-row': 'time'}).find_all('td')
-            winds = forecast_table.find('tr', attrs={'data-row': 'wind'}).find_all(
-                'text', attrs={'class': 'wind-icon__val'})  # Use "img" instead of "td" to get direction of wind
+            #winds = forecast_table.find('tr', attrs={'data-row': 'wind'}).find_all(
+            #    'text', attrs={'class': 'wind-icon__val'})  # Use "img" instead of "td" to get direction of wind
             summaries = forecast_table.find('tr', attrs={'data-row': 'summary'}).find_all('td')
             rains = forecast_table.find('tr', attrs={'data-row': 'rain'}).find_all('td')
             snows = forecast_table.find('tr', attrs={'data-row': 'snow'}).find_all('td')
@@ -158,8 +158,7 @@ def scrape(mountains_urls):
                     # Iterate over forecast
                     for j in range(i, i + num_cols):
                         time_cell = clean(times[j].get_text())
-                        print(time_cell)
-                        wind = clean(winds[j].get_text())
+                        #wind = clean(winds[j].get_text())
                         summary = clean(summaries[j].get_text())
                         rain = clean(rains[j].get_text())
                         snow = clean(snows[j].get_text())
@@ -171,8 +170,8 @@ def scrape(mountains_urls):
                         sunset = clean(sunsets[j].get_text())
 
                         rows.append(np.array(
-                            [mountain_name, date, elevation, time_cell, wind, summary, rain, snow, max_temp, min_temp,
-                             chill, freezing, sunrise, sunset]))
+                            [mountain_name, date, elevation, time_cell, summary, rain, snow, max_temp, min_temp,
+                             chill, freezing, sunrise, sunset]))    # wind
 
             time.sleep(1)  # Delay to not bombard the website with requests
 
