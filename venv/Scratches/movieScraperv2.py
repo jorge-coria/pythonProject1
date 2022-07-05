@@ -7,6 +7,26 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+def get_page_review_soup():
+    # Create a soup object and select the Review text on the current page
+    html = browser.page_source
+    soup = bs4.BeautifulSoup(html, features="html.parser")
+    reviewText = soup.select('p[data-qa=review-text]')
+
+    # Print out the list of audience reviews on the current page
+    for i in range(len(reviewText)):
+        print('Review #' + str(i + 1) + ': ' + str(reviewText[i].text))
+
+def click_next_page_link():
+    # nextPageLink takes us to next page of movie reviews, click it
+    WebDriverWait(browser, 20).until(
+        EC.presence_of_element_located((By.CLASS_NAME, 'prev-next-paging__button-text'))
+    )
+    nextPageLink = browser.find_element(By.CSS_SELECTOR, 'button[data-qa=next-btn]')
+    nextPageLink.click()
+
+    time.sleep(5)
+
 # Open an incognito Chrome tab that stays open
 o = webdriver.ChromeOptions()
 o.add_argument('--incognito')
@@ -34,32 +54,13 @@ WebDriverWait(browser, 20).until(
 )
 reviewLink = browser.find_element(By.CSS_SELECTOR, 'a[data-qa=audience-reviews-view-all-link]')
 reviewLink.click()
-
 time.sleep(5)
 
-# Create a soup object and select the Review text on the current page
-html = browser.page_source
-soup = bs4.BeautifulSoup(html, features="html.parser")
-reviewText = soup.select('p[data-qa=review-text]')
+get_page_review_soup()
 
-# Print out the list of audience reviews on the current page
-for i in range(len(reviewText)):
-    print('Review #' + str(i+1) + ': ' + str(reviewText[i].text))
-
-# nextPageLink takes us to next page of movie reviews, click it
-WebDriverWait(browser, 20).until(
-    EC.presence_of_element_located((By.CLASS_NAME, 'prev-next-paging__button-text'))
-)
-nextPageLink = browser.find_element(By.CSS_SELECTOR, 'button[data-qa=next-btn]')
-nextPageLink.click()
-
-time.sleep(5)
-
-# Create a soup object and select the Review text on the current page
-html = browser.page_source
-soup = bs4.BeautifulSoup(html, features="html.parser")
-reviewText = soup.select('p[data-qa=review-text]')
-
-# Print out the list of audience reviews on the current page
-for i in range(len(reviewText)):
-    print('Review #' + str(i+1) + ': ' + str(reviewText[i].text))
+try:
+    while True:
+        click_next_page_link()
+        get_page_review_soup()
+except KeyboardInterrupt:
+    exit(404)
