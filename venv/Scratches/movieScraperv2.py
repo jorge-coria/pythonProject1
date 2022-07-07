@@ -9,10 +9,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 # Create a soup object of current page and print out a list of the audience reviews
-def get_page_review_soup():
-    html = browser.page_source
+def get_page_review_soup(webdriver, css_selector):
+    html = webdriver.page_source
     soup = bs4.BeautifulSoup(html, features="html.parser")
-    page_review_text = soup.select('p[data-qa=review-text]')
+    page_review_text = soup.select(css_selector)
 
     for i in range(len(page_review_text)):
         print('Review #' + str(i + 1) + ': ' + str(page_review_text[i].text))
@@ -34,6 +34,7 @@ o.add_argument('--incognito')
 o.add_experimental_option('detach', True)
 s = Service('C:/Users/Home/chromedriver.exe')
 browser = webdriver.Chrome(service=s, options=o)
+browser_2 = webdriver.Chrome(service=s, options=o)
 searchTerm = pyperclip.paste()
 browser.get('https://www.rottentomatoes.com/search?search=' + ''.join(searchTerm))
 
@@ -56,11 +57,21 @@ reviewLink.click()
 
 time.sleep(5)
 
-get_page_review_soup()
+review_url = browser.current_url
+browser_2.get(review_url)
 
+reviewLink = WebDriverWait(browser_2, 10).until(
+    EC.presence_of_element_located((By.CSS_SELECTOR, 'a[data-qa=all-critics]'))
+)
+reviewLink.click()
+
+time.sleep(5)
+
+get_page_review_soup(browser, 'p[data-qa=review-text]')
+get_page_review_soup(browser_2, 'p[data-qa=review-text]')
 try:
     while True:
         click_next_page_link()
-        get_page_review_soup()
+        get_page_review_soup('p[data-qa=review-text]')
 except KeyboardInterrupt:
     exit(404)
