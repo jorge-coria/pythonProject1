@@ -28,6 +28,15 @@ def click_next_page_link(webdriver):
 
     time.sleep(5)
 
+# Clicks the 'All Reviews' link for either Audience xor Client reviews
+def click_all_reviews_link(webdriver, css_selector):
+    reviewLink = WebDriverWait(webdriver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, css_selector))
+    )
+    reviewLink.click()
+
+    time.sleep(5)
+
 
 # Open an incognito Chrome window that stays open after program is finished running
 o = webdriver.ChromeOptions()
@@ -51,21 +60,13 @@ for i in range(len(movie_title_list)):
         break
 
 # Click 'See all Audience reviews' link to navigate to the full page of audience reviews
-reviewLink = WebDriverWait(browser, 10).until(
-    EC.presence_of_element_located((By.CSS_SELECTOR, 'a[data-qa=audience-reviews-view-all-link]'))
-)
-reviewLink.click()
-
-time.sleep(5)
+click_all_reviews_link(browser, 'a[data-qa=audience-reviews-view-all-link]')
 
 browser_2 = webdriver.Chrome(service=s, options=o)
 review_url = browser.current_url
 browser_2.get(review_url)
 
-reviewLink = WebDriverWait(browser_2, 10).until(
-    EC.presence_of_element_located((By.CSS_SELECTOR, 'a[data-qa=all-critics]'))
-)
-reviewLink.click()
+click_all_reviews_link(browser_2, 'a[data-qa=all-critics]')
 
 time.sleep(5)
 
