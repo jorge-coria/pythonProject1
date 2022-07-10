@@ -13,6 +13,8 @@ def isValid(string):
         if c in hashMap:
             if stack and stack[-1] == hashMap[c]:
                 stack.pop()
+            else:
+                return False
         else:
             stack.append(c)
 
