@@ -10,7 +10,7 @@ class TreeNode:
 class Solution:
     def invertTree(root: TreeNode):
         if not root:
-            return False
+            return None
 
         tmp = root.left
         root.left = root.right
