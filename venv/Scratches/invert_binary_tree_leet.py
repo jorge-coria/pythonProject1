@@ -22,4 +22,7 @@ class Solution:
         return root
 
 q = [2, 1, 3]
+r = [7, 1, 10, 1, 4, 8, 9]
+
 print(Solution.invertTree(q))
+print(Solution.invertTree(r))
