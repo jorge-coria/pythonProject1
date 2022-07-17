@@ -27,3 +27,4 @@ s = [10, 4, 6, 7, 9, 3, 2]
 
 print(Solution.invertTree(q))
 print(Solution.invertTree(r))
+print(Solution.invertTree(s))
