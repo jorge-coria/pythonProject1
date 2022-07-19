@@ -25,6 +25,7 @@ q = [2, 1, 3]
 r = [7, 1, 10, 1, 4, 8, 9]
 s = [10, 4, 6, 7, 9, 3, 2]
 t = [8, 14, 1, 7, 3, 9, 2]
+u = [4, 2, 8, 1, 10, 9, 3]
 
 print(Solution.invertTree(q))
 print(Solution.invertTree(r))
