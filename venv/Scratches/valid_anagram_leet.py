@@ -1,0 +1,27 @@
+# Compares the count of each char of each string, return True if s is an anagram of t
+# Time + Memory Complexity: O(s + t)
+
+class Solution:
+    def isAnagram(s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        countS, countT = {}, {}
+
+        for i in range(len(s)):
+            countS[s[i]] = 1 + countS.get(s[i], 0)
+            countT[t[i]] = 1 + countT.get(t[i], 0)
+
+        for c in countS:
+            if countS[c] != countT.get(c, 0):
+                return False
+
+        return True
+
+a, b = 'anagram', 'nagaram'
+c, d = 'rat', 'car'
+r, s = 'disney', 'neydis'
+
+print('Is '+ a + ' an anagram of ' + b + '? >> ' + str(Solution.isAnagram(a, b)))
+print('Is '+ c + ' an anagram of ' + d + '? >> ' + str(Solution.isAnagram(c, d)))
+print('Is '+ r + ' an anagram of ' + s + '? >> ' + str(Solution.isAnagram(r, s)))
