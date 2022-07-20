@@ -20,8 +20,10 @@ class Solution:
 
 a, b = 'anagram', 'nagaram'
 c, d = 'rat', 'car'
+e, f = 'brag', 'grab'
 r, s = 'disney', 'neydis'
 
 print('Is '+ a + ' an anagram of ' + b + '? >> ' + str(Solution.isAnagram(a, b)))
 print('Is '+ c + ' an anagram of ' + d + '? >> ' + str(Solution.isAnagram(c, d)))
+print('Is '+ e + ' an anagram of ' + f + '? >> ' + str(Solution.isAnagram(e, f)))
 print('Is '+ r + ' an anagram of ' + s + '? >> ' + str(Solution.isAnagram(r, s)))
