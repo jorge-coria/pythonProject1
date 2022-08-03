@@ -21,4 +21,7 @@ class Solution:
         return -1
 
 u = [1, 2, 3, 4, 8, 9, 10]
+v = [-1, 8, 100, 2000, 20000, 300000]
+
 print(Solution.search(u, 10))
+print(Solution.search(v, 20000))
