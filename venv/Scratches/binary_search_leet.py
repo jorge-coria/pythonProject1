@@ -23,7 +23,9 @@ class Solution:
 u = [1, 2, 3, 4, 8, 9, 10]
 v = [-1, 8, 100, 2000, 20000, 300000]
 w = [-50, -25, -1, 15, 25, 50, 100, 150, 1000, 20000]
+x = [-500, -250, -10, 150, 250, 500, 1000, 1500, 10000, 200000]
 
 print(Solution.search(u, 10)) # Index : 6
 print(Solution.search(v, 20000)) # Index : 4
 print(Solution.search(w, 25)) # Index : 4
+print(Solution.search(x, 150)) # Index : 1
