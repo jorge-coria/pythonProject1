@@ -30,5 +30,6 @@ print(Solution.search(u, 10)) # Index : 6
 print(Solution.search(v, 20000)) # Index : 4
 print(Solution.search(w, 25)) # Index : 4
 print(Solution.search(x, 150)) # Index : 3
+print(Solution.search(x, 1500)) # Index : 7
 print(Solution.search(y, 10000)) # Index : 5
 print(Solution.search(y, 2500)) # Index : 3
