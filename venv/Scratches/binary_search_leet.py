@@ -27,6 +27,7 @@ x = [-500, -250, -10, 150, 250, 500, 1000, 1500, 10000, 200000]
 y = [-2500, -100, 1500, 2500, 5000, 10000, 10000]
 
 print(Solution.search(u, 10)) # Index : 6
+print(Solution.search(u, 3)) # Index : 2
 print(Solution.search(v, 20000)) # Index : 4
 print(Solution.search(w, 25)) # Index : 4
 print(Solution.search(x, 150)) # Index : 3
